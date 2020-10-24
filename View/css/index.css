@@ -1,0 +1,36 @@
+/* Geral */
+
+* {
+  font-size: 16px;
+}
+
+.content {
+  height: 100vh;
+  display: flex;
+}
+
+.content > .box {
+  width: 100%;
+  margin: auto 0;
+}
+
+.theme-background {
+  background-color: #6f9bed !important;
+}
+
+.responsive-separator-right {
+  border-right: 1px solid #6f9bed;
+}
+
+/* Mobile */
+
+@media (max-width: 1000px) {
+  * {
+    font-size: 40px;
+  }
+  .responsive-separator-right {
+    border-right: 0;
+    border-bottom: 2px solid #6f9bed;
+    margin-bottom: 25px;
+  }
+}
