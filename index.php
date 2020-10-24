@@ -1,5 +1,6 @@
 <?php
 $pageTitle = 'Aderência de GRE';
+$doDBConn = 1;
 include('./View/inc/header.php');
 ?>
 
@@ -15,7 +16,7 @@ include('./View/inc/header.php');
                     </p>
                 </div>
                 <div class="col-12 col-lg-5">
-                    <form>
+                    <form onsubmit="login()">
                         <div class="form-group">
                             <label for="txtEmail">Email</label>
                             <input type="email" class="form-control" id="txtEmail" required>
@@ -24,8 +25,8 @@ include('./View/inc/header.php');
                             <label for="txtSenha">Senha</label>
                             <input type="password" class="form-control" id="txtSenha" required pattern=".{10,40}" title="Senha entre 10 a 40 caracteres">
                         </div>
-                        <button type="submit" class="btn btn-primary" onclick="login()">Entrar</button>
-                        <button type="button" class="btn btn-secondary" onclick="cadastrar()">Cadastrar</button>
+                        <button type="submit" class="btn btn-primary"">Entrar</button>
+                        <button type=" button" class="btn btn-secondary" onclick="cadastrar()">Cadastrar</button>
                     </form>
                 </div>
             </div>
