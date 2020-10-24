@@ -3,6 +3,7 @@ function login() {
     type: "POST",
     dataType: "json",
     url: "./Controller/php/index/login.php",
+    async: false,
     data: {
       email: $("#txtEmail").val(),
       senha: $("#txtSenha").val(),
@@ -11,5 +12,4 @@ function login() {
       alert(response.msg);
     },
   });
-  console.log("badbakjsdbkasbdkajsbdkajsbdk");
 }
