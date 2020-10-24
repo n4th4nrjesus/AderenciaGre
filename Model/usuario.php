@@ -5,8 +5,4 @@ class Usuario
     public $nome;
     public $email;
     public $senha;
-
-    public function __construct()
-    {
-    }
 }

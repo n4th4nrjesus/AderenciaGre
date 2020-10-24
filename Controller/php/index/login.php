@@ -13,6 +13,8 @@ $usuario->senha = $senha;
 $query = "
     SELECT
         id
+        , nome
+        , email
     FROM aderencia_gre.usuario
     WHERE email = '{$usuario->email}'
         AND senha = '{$usuario->senha}';
@@ -37,7 +39,7 @@ echo json_encode($response);
 function setSessionData($response_status, $result)
 {
     if ($response_status) {
-        $row = mysqli_fetch_assoc($result)[0];
+        $row = mysqli_fetch_assoc($result);
 
         $_SESSION['usuario_id'] = $row['id'];
         $_SESSION['usuario_nome'] = $row['nome'];

@@ -15,7 +15,7 @@ include('./View/inc/header.php');
                     </p>
                 </div>
                 <div class="col-12 col-lg-5">
-                    <form onsubmit="login()">
+                    <form id="frmLogin">
                         <div class="form-group">
                             <label for="txtEmail">Email</label>
                             <input type="email" class="form-control" id="txtEmail" required>
