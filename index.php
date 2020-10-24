@@ -1,7 +1,7 @@
 <?php
-    $pageTitle = 'Aderência de GRE';
-    $doDBConn = 0;
-    include('./View/inc/header.php');
+$pageTitle = 'Aderência de GRE';
+$doDBConn = 0;
+include('./View/inc/header.php');
 ?>
 
 <div class='container-fluid content theme-background p-5'>
@@ -19,15 +19,11 @@
                     <form>
                         <div class="form-group">
                             <label for="txtEmail">Email</label>
-                            <input type="email" class="form-control" id="txtEmail" 
-                                required>
+                            <input type="email" class="form-control" id="txtEmail" required>
                         </div>
                         <div class="form-group">
                             <label for="txtSenha">Senha</label>
-                            <input type="password" class="form-control" id="txtSenha" 
-                                required
-                                pattern=".{10,40}"
-                                title="Senha entre 10 a 40 caracteres">
+                            <input type="password" class="form-control" id="txtSenha" required pattern=".{10,40}" title="Senha entre 10 a 40 caracteres">
                         </div>
                         <button type="submit" class="btn btn-primary" click="login()">Entrar</button>
                         <button type="button" class="btn btn-secondary" click="cadastrar()">Cadastrar</button>
@@ -37,5 +33,5 @@
         </div>
     </div>
 </div>
-    
+
 <?php include('./View/inc/footer.php'); ?>
