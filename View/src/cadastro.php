@@ -44,7 +44,7 @@ include(__DIR__ . '/../inc/header.php');
 </div>
 
 <?php
-$jsFile = 'index';
+$jsFile = 'cadastro';
 $includeMenu = 0;
 
 include(__DIR__ . '/../inc/footer.php');

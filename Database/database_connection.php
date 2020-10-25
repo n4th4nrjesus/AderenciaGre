@@ -44,6 +44,8 @@ function executeInsert(string $sql)
 
 function find(string $table, string $where = '', string $joins = '', $fields = '*')
 {
+    $queryFields = $fields;
+
     if (is_array($fields))
         $queryFields = implode(',', $fields);
 
@@ -69,7 +71,8 @@ function create($table, array $fields)
     }
 
     $fieldNames = implode(',', $fieldNames);
-    $fieldValues = implode(',', $fieldValues);
+    $fieldValues = implode("','", $fieldValues);
+    $fieldValues = "'" . $fieldValues . "'";
 
     $sql = "
         INSERT INTO aderencia_gre.{$table}

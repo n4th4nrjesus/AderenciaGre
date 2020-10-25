@@ -23,6 +23,7 @@ switch ($usuario_exists['status']) {
         break;
     case 0:
         $response['status'] = 1;
+        $response['msg'] = 'Cadastro realizado com sucesso! Agora basta fazer o login com a conta que acaba de criar e começar a usar o sistema.';
         break;
 }
 
