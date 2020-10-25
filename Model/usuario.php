@@ -10,4 +10,16 @@ class Usuario
     {
         return find('usuario', $where, $joins, $fields);
     }
+
+    public function create()
+    {
+        return create(
+            'usuario',
+            [
+                'nome' => $this->nome,
+                'email' => $this->email,
+                'senha' => $this->senha
+            ]
+        );
+    }
 }

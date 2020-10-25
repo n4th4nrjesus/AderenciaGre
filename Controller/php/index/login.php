@@ -1,14 +1,15 @@
 <?php
 
-include('../../../Database/database_connection.php');
-include('../../../Model/usuario.php');
+include(__DIR__ . '/../../../Database/database_connection.php');
+include(__DIR__ . '/../../../Model/usuario.php');
+
+$email = trim($_POST['email']);
+$senha = md5(trim($_POST['senha']));
 
 $usuario = new Usuario();
-$usuario->email = trim($_POST['email']);
-$usuario->senha = md5(trim($_POST['senha']));
 
 $usuario_login = $usuario->find(
-    "email = '{$usuario->email}' AND senha = '{$usuario->senha}'",
+    "email = '{$email}' AND senha = '{$senha}'",
     '',
     ['id', 'nome', 'email']
 );
@@ -21,21 +22,21 @@ switch ($usuario_login['status']) {
         $response['msg'] = $usuario_login['result'];
         break;
     case 1:
-        $response["status"] = 1;
+        $response['status'] = 1;
         break;
 }
 
-setSessionData($response['status'], $usuario_login['result']);
+if ($response['status'])
+    setSessionData($usuario_login['result']);
+
 echo json_encode($response);
 
-function setSessionData($response_status, $result)
+function setSessionData($result)
 {
-    if ($response_status) {
-        $row = mysqli_fetch_assoc($result);
+    $row = mysqli_fetch_assoc($result);
 
-        session_start();
-        $_SESSION['usuario_id'] = $row['id'];
-        $_SESSION['usuario_nome'] = $row['nome'];
-        $_SESSION['usuario_email'] = $row['email'];
-    }
+    session_start();
+    $_SESSION['usuario_id'] = $row['id'];
+    $_SESSION['usuario_nome'] = $row['nome'];
+    $_SESSION['usuario_email'] = $row['email'];
 }

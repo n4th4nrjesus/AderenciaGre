@@ -9,7 +9,7 @@
 </head>
 <?php
 if (isset($doDBConn) && $doDBConn == 1)
-    require("http://" . $_SERVER['SERVER_NAME'] . '/AderenciaGre/Database/database_connection.php');
+    include(__DIR__ . '/Database/database_connection.php');
 ?>
 
 <body>

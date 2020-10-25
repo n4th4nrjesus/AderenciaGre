@@ -4,6 +4,11 @@
   font-size: 16px;
 }
 
+body {
+  background: #6f9bed fixed !important;
+  background-size: cover;
+}
+
 .content {
   height: 100vh;
   display: flex;
@@ -12,10 +17,6 @@
 .content > .box {
   width: 100%;
   margin: auto 0;
-}
-
-.theme-background {
-  background-color: #6f9bed !important;
 }
 
 .responsive-separator-right {
@@ -28,9 +29,15 @@
   * {
     font-size: 40px;
   }
+  .content {
+    height: auto;
+  }
   .responsive-separator-right {
     border-right: 0;
     border-bottom: 2px solid #6f9bed;
     margin-bottom: 25px;
+  }
+  .divBtnForm {
+    text-align: left !important;
   }
 }

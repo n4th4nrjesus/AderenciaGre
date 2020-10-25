@@ -17,7 +17,7 @@ mysqli_query($conn, 'SET character_set_connection=utf8');
 mysqli_query($conn, 'SET character_set_client=utf8');
 mysqli_query($conn, 'SET character_set_results=utf8');
 
-function executeQuery(string $query)
+function executeSelect(string $query)
 {
     global $conn;
 
@@ -26,6 +26,17 @@ function executeQuery(string $query)
             return ['status' => 1, 'result' => $result];
         return
             ['status' => 0, 'result' => 'Found no rows.'];
+    }
+
+    return ['status' => -1, 'result' => mysqli_error($conn)];
+}
+
+function executeInsert(string $sql)
+{
+    global $conn;
+
+    if (mysqli_query($conn, $sql)) {
+        return ['status' => 1, 'result' => "Row inserted."];
     }
 
     return ['status' => -1, 'result' => mysqli_error($conn)];
@@ -47,5 +58,24 @@ function find(string $table, string $where = '', string $joins = '', $fields = '
         {$queryWhere};
     ";
 
-    return executeQuery($query);
+    return executeSelect($query);
+}
+
+function create($table, array $fields)
+{
+    foreach ($fields as $key => $value) {
+        $fieldNames[] = $key;
+        $fieldValues[] = $value;
+    }
+
+    $fieldNames = implode(',', $fieldNames);
+    $fieldValues = implode(',', $fieldValues);
+
+    $sql = "
+        INSERT INTO aderencia_gre.{$table}
+        ({$fieldNames}) VALUES
+        ({$fieldValues})
+    ";
+
+    return executeInsert($sql);
 }

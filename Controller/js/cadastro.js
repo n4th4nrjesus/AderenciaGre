@@ -1,21 +1,18 @@
-$("#frmLogin").submit((e) => {
+$("#frmCadastro").submit((e) => {
   e.preventDefault();
 
   $.ajax({
     type: "POST",
     dataType: "json",
-    url: "./Controller/php/index/login.php",
+    url: "./Controller/php/cadastro/cadastrar.php",
     data: {
+      nome: $("#txtNome").val(),
       email: $("#txtEmail").val(),
       senha: $("#txtSenha").val(),
     },
     success: (response) => {
-      if (response.status == 1) window.location.href = "./View/src/test.php";
+      if (response.status == 1) window.location.href = "./index.php";
       else alert(response.msg);
     },
   });
 });
-
-function cadastrar() {
-  window.location.href = "./View/src/cadastro.php";
-}

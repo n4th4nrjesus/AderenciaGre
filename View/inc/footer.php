@@ -7,14 +7,14 @@
         <script>
             <?php
             if (isset($jsFile) && !empty($jsFile))
-                require('./Controller/js/' . $jsFile . '.js');
+                include(__DIR__ . '/../../Controller/js/' . $jsFile . '.js');
             ?>
         </script>
     </footer>
 
     <?php
     if (!isset($includeMenu) || $includeMenu != 0)
-        require('menu.php');
+        include(__DIR__ . '/../inc/menu.php');
     ?>
 
     </html>
