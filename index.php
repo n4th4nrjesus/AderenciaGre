@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (isset($_SESSION['usuario_id']))
+    header("Location: ./View/src/test.php");
+
 $pageTitle = 'Aderência de GRE';
 include('./View/inc/header.php');
 ?>
@@ -35,5 +39,7 @@ include('./View/inc/header.php');
 
 <?php
 $jsFile = 'index';
+$includeMenu = 0;
+
 include('./View/inc/footer.php');
 ?>

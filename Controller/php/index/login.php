@@ -33,6 +33,7 @@ function setSessionData($response_status, $result)
     if ($response_status) {
         $row = mysqli_fetch_assoc($result);
 
+        session_start();
         $_SESSION['usuario_id'] = $row['id'];
         $_SESSION['usuario_nome'] = $row['nome'];
         $_SESSION['usuario_email'] = $row['email'];
