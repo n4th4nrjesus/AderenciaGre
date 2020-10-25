@@ -16,3 +16,36 @@ mysqli_query($conn, "SET NAMES 'utf8'");
 mysqli_query($conn, 'SET character_set_connection=utf8');
 mysqli_query($conn, 'SET character_set_client=utf8');
 mysqli_query($conn, 'SET character_set_results=utf8');
+
+function executeQuery(string $query)
+{
+    global $conn;
+
+    if ($result = mysqli_query($conn, $query)) {
+        if (mysqli_num_rows($result) > 0)
+            return ['status' => 1, 'result' => $result];
+        return
+            ['status' => 0, 'result' => 'Found no rows.'];
+    }
+
+    return ['status' => -1, 'result' => mysqli_error($conn)];
+}
+
+function find(string $table, string $where = '', string $joins = '', $fields = '*')
+{
+    if (is_array($fields))
+        $queryFields = implode(',', $fields);
+
+    if (!empty($where))
+        $queryWhere = 'WHERE ' . $where;
+
+    $query = "
+        SELECT
+            {$queryFields}
+        FROM aderencia_gre.{$table}
+        {$joins}
+        {$queryWhere};
+    ";
+
+    return executeQuery($query);
+}

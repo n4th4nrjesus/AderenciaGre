@@ -3,37 +3,29 @@
 include('../../../Database/database_connection.php');
 include('../../../Model/usuario.php');
 
-$email = trim($_POST['email']);
-$senha = md5(trim($_POST['senha']));
-
 $usuario = new Usuario();
-$usuario->email = $email;
-$usuario->senha = $senha;
+$usuario->email = trim($_POST['email']);
+$usuario->senha = md5(trim($_POST['senha']));
 
-$query = "
-    SELECT
-        id
-        , nome
-        , email
-    FROM aderencia_gre.usuario
-    WHERE email = '{$usuario->email}'
-        AND senha = '{$usuario->senha}';
-";
+$usuario_login = $usuario->find(
+    "email = '{$usuario->email}' AND senha = '{$usuario->senha}'",
+    '',
+    ['id', 'nome', 'email']
+);
 
 $response['status'] = 0;
+$response['msg'] = 'Login inválido! Tente novamente ou cadastre uma conta agora.';
 
-if ($result = mysqli_query($conn, $query)) {
-    $response['msg'] = 'Login inválido! Tente novamente ou cadastre uma conta agora.';
-
-    if (mysqli_num_rows($result) > 0) {
+switch ($usuario_login['status']) {
+    case -1:
+        $response['msg'] = $usuario_login['result'];
+        break;
+    case 1:
         $response["status"] = 1;
-        $response["msg"] = 'Login válido!';
-    }
-} else {
-    $response['msg'] = mysqli_error($conn);
+        break;
 }
 
-setSessionData($response['status'], $result);
+setSessionData($response['status'], $usuario_login['result']);
 echo json_encode($response);
 
 function setSessionData($response_status, $result)
