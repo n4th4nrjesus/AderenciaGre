@@ -4,7 +4,7 @@ $("#btnExit").click(() => {
     dataType: "json",
     url: "../../Controller/php/login_exit.php",
     success: (response) => {
-      if (response.status == 1) window.location.href = "../../index.php";
+      if (response.status == 1) window.location.href = "../../";
       else alert(response.msg);
     },
   });

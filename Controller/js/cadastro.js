@@ -11,7 +11,7 @@ $("#frmCadastro").submit((e) => {
       senha: $("#txtSenha").val(),
     },
     success: (response) => {
-      if (response.status == 1) window.location.href = "./index.php";
+      if (response.status == 1) window.location.href = "./";
       else alert(response.msg);
     },
   });

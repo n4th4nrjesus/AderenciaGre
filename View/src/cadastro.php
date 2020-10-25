@@ -33,7 +33,7 @@ include(__DIR__ . '/../inc/header.php');
                                 <input type="submit" class="btn btn-primary" value="Cadastrar">
                             </div>
                             <div class="col-12 col-lg-6 pt-2 text-right divBtnForm">
-                                <a class="btn btn-secondary" href="<?= "http://" . $_SERVER['SERVER_NAME'] ?>/AderenciaGre">Voltar à tela de login</a>
+                                <a class="btn btn-secondary" href="../../">Voltar à tela de login</a>
                             </div>
                         </div>
                     </form>

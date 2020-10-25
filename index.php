@@ -33,7 +33,7 @@ include(__DIR__ . '/View/inc/header.php');
                                 <input type="submit" class="btn btn-primary" value="Entrar">
                             </div>
                             <div class="col-12 col-lg-6 pt-2 text-right divBtnForm">
-                                <a class="btn btn-secondary" href="View/src/cadastro.php">Cadastrar</a>
+                                <a class="btn btn-secondary" href="./View/src/cadastro.php">Cadastrar</a>
                             </div>
                         </div>
                     </form>
