@@ -1,5 +1,6 @@
 <?php
 $pageTitle = 'Aderência de GRE - Cadastro';
+$includeMenu = 0;
 include(__DIR__ . '/../inc/header.php');
 ?>
 
@@ -45,7 +46,5 @@ include(__DIR__ . '/../inc/header.php');
 
 <?php
 $jsFile = 'cadastro';
-$includeMenu = 0;
-
 include(__DIR__ . '/../inc/footer.php');
 ?>

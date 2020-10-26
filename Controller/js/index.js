@@ -10,7 +10,8 @@ $("#frmLogin").submit((e) => {
       senha: $("#txtSenha").val(),
     },
     success: (response) => {
-      if (response.status == 1) window.location.href = "./View/src/test.php";
+      if (response.status == 1)
+        window.location.href = "./View/src/dashboard.php";
       else alert(response.msg);
     },
   });

@@ -23,6 +23,18 @@ body {
   border-right: 1px solid #6f9bed;
 }
 
+.nav-item:hover,
+.nav-item > a:hover,
+.nav-item:focus,
+.nav-item > a:focus {
+  background-color: #6f9bed !important;
+  color: white !important;
+}
+
+.adapt-body-to-menu {
+  padding-top: 60px;
+}
+
 /* Mobile */
 
 @media (max-width: 1000px) {
@@ -39,5 +51,8 @@ body {
   }
   .divBtnForm {
     text-align: left !important;
+  }
+  .adapt-body-to-menu {
+    padding-top: 150px;
   }
 }
