@@ -14,4 +14,4 @@ if (isset($doDBConn) && $doDBConn == 1)
     include(__DIR__ . '/../../Database/database_connection.php');
 ?>
 
-<body>
+<body class="<?= !isset($includeMenu) || $includeMenu != 0 ? 'adapt-body-to-menu' : ''; ?>">
