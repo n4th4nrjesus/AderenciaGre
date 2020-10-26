@@ -1,5 +1,4 @@
 /* Instancias iniciais do banco de dados aderencia_gre */
-ALTER TABLE aderencia_gre.artefato AUTO_INCREMENT = 1;
 
 INSERT INTO aderencia_gre.artefato (nome, tipo)
 VALUES 
@@ -11,7 +10,7 @@ INSERT INTO aderencia_gre.complexidade (nome, dias_prazo)
 VALUES
     ("Baixa", 1)
     , ("Média", 2)
-    , ("Alta", 3)
+    , ("Alta", 3);
 
 
 INSERT INTO aderencia_gre.urgencia (nome, dias_prazo)
@@ -19,7 +18,7 @@ VALUES
     ("Baixa", 3)
     , ("Média", 2)
     , ("Alta", 1)
-    , ("Urgente", 0)
+    , ("Urgente", 0);
 
 INSERT INTO aderencia_gre.pergunta_checklist (artefato_id, descricao)
 VALUES
@@ -31,7 +30,7 @@ VALUES
     , (1, "A descrição dos casos de uso não possuem erros de semântica")
     , (1, "A descrição dos casos de uso não possuem erros de gramática")
     , (1, "Os casos de uso possuem identificadores únicos")
-    , (1. "Os identificadores estão descritos corretamente (curtos, sem espaçamento, numerados)")
+    , (1, "Os identificadores de casos de uso estão descritos corretamente (curtos, sem espaçamento, numerados)")
     , (1, "O Diagrama possui associações entre atores/casos de uso")
     , (1, "O Diagrama possui relacionamento include")
     , (1, "O relacionamento include está ligado corretamente entre os casos de uso")
@@ -50,18 +49,18 @@ VALUES
     , (1, "O Diagrama não possui casos de uso sobrepostos")
     , (1, "O Diagrama não possui linhas cruzadas")
     , (1, "O Diagrama está atualizado de acordo com os requisitos")
-    
     , (2, "A Especificação possui o título do projeto")
-    , (2, "A Especificação de requisitos ")
+    , (2, "A Especificação de requisitos descreve regras de negócio")
+    , (2, "As regras de negócio descritas se aderem ao contexto do sistema")
     , (2, "A Especificação mantêm uma linguagem formal")
     , (2, "A Especificação utiliza uma tabela para organizar os requisitos")
     , (2, "A Especificação possuí identificadores únicos para cada requisito")
-    , (2, "Os identificadores estão descritos corretamente (curtos, sem espaçamento, numerados)")
-    , (2, "A Especificação possuí campos para a descrição do requisito")
-    , (2, "A Especificação possui requisitos funcionais")
-    , (2, "A Especificação descreve corretamente requisitos funionais")
+    , (2, "Os identificadores de requisitos estão descritos corretamente (curtos, sem espaçamento, numerados)")
+    , (2, "A Especificação possuí a descrição do requisito")
+    , (2, "A Especificação descreve requisitos funcionais")
+    , (2, "A Especificação descreve corretamente os requisitos funionais")
     , (2, "A Especificação possui requisitos não funcionais")
-    , (2, "A Especificação descreve corretamente requisitos não funionais")
+    , (2, "A Especificação descreve corretamente os requisitos não funionais")
     , (2, "A Especificação identifica a origem do requisito")
     , (2, "A Especificação identifica o tipo de requisito(processo, projeto, produto)")
     , (2, "A Especificação descreve detalhes de requisitos de processo")
@@ -71,4 +70,7 @@ VALUES
     , (2, "A Especificação de requisitos apresenta informações de tempo detalhadas")
     , (2, "A Especificação contem requisitos testáveis")
     , (2, "A Especificação trata exceções para os requisitos")
-    , (2, "")
+    , (2, "A Especificação atende corretamente o escopo do projeto")
+    , (2, "A Especificação de requisitos é mantida atualizada")
+    , (2, "A Especificação de requisitos menciona os envolvidos no projeto");
+
