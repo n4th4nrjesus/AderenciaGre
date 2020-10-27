@@ -5,13 +5,11 @@ VALUES
     ("Diagrama de Caso de Uso", "Diagrama")
     , ("Especificação de Resquisitos", "Arquivo em Texto");
 
-
 INSERT INTO aderencia_gre.complexidade (nome, dias_prazo)
 VALUES
     ("Baixa", 1)
     , ("Média", 2)
     , ("Alta", 3);
-
 
 INSERT INTO aderencia_gre.urgencia (nome, dias_prazo)
 VALUES
@@ -72,4 +70,3 @@ VALUES
     , (2, "A Especificação atende corretamente o escopo do projeto")
     , (2, "A Especificação de requisitos é mantida atualizada")
     , (2, "A Especificação de requisitos menciona os envolvidos no projeto");
-

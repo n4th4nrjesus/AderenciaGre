@@ -11,12 +11,8 @@ $("#frmLogin").submit((e) => {
     },
     success: (response) => {
       if (response.status == 1)
-        window.location.href = "./View/src/dashboard.php";
+        window.location.pathname = "AderenciaGre/View/src/dashboard.php";
       else alert(response.msg);
     },
   });
 });
-
-function cadastrar() {
-  window.location.href = "./View/src/cadastro.php";
-}
