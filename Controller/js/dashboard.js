@@ -1,6 +1,8 @@
 const userId = $("#user-id").val();
 
 getTotalAdherence(userId);
+getNonComplianceNumber(userId);
+
 getArtifactsAdherence(userId, 1);
 getArtifactsAdherence(userId, 2);
 
@@ -42,10 +44,27 @@ function getArtifactsAdherence(userId, artifactId) {
   });
 }
 
-function setHundredAlert(response) {
-  alert = $("#hundred-alert");
+function getNonComplianceNumber(userId) {
+  $.ajax({
+    type: "POST",
+    dataType: "json",
+    url:
+      window.location.origin +
+      "/AderenciaGre/Controller/php/dashboard/get_non_compliance_number.php",
+    data: {
+      userId: userId,
+    },
+    success: (response) => {
+      $("#non_compliance_number").html(response);
+      setHundredAlert(response);
+    },
+  });
+}
 
-  if (response == 100 && !alert.hasClass("show")) {
+function setHundredAlert(response) {
+  const alert = $("#hundred-alert");
+
+  if ([100, "N/A"].includes(response) && !alert.hasClass("show")) {
     alert.removeClass("d-none");
     alert.addClass("fade show");
   }
