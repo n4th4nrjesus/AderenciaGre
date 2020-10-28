@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light shadow-sm">
     <a class="navbar-brand" id="nav-brand" href="#">Aderência Gre</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,6 +43,10 @@
             </li>
         </ul>
     </div>
+
+    <form class="form-inline">
+        <h6 class="mb-0">Olá, <?= $_SESSION['usuario_nome']; ?>!</h6>
+    </form>
 </nav>
 <script type="text/javascript">
     <?php include(__DIR__ . '/../../Controller/js/menu.js'); ?>

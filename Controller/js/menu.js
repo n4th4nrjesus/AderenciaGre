@@ -8,12 +8,12 @@ $("#nav-dashboard").click(() => {
   setLocation("src/dashboard.php");
 });
 
-$("#nav-requirements").click(() => {
-  setLocation("src/checklist/especificacoes_requisitos.php");
+$("#nav-use-cases, #alert-use-cases").click(() => {
+  setLocation("src/checklist/casos_de_uso.php");
 });
 
-$("#nav-use-cases").click(() => {
-  setLocation("src/checklist/casos_de_uso.php");
+$("#nav-requirements, #alert-requirements").click(() => {
+  setLocation("src/checklist/especificacoes_requisitos.php");
 });
 
 $("#btnExit").click(() => {
