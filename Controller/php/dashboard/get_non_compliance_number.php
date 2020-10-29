@@ -1,15 +1,17 @@
 <?php
 include(__DIR__ . '/../../../Database/database_connection.php');
+include(__DIR__ . '/../../../Model/usuario_pergunta.php');
 
 $userId = trim($_POST["userId"]);
 
-$totalItemsQuery = executeSelect("
-    SELECT
-        COUNT(*) AS num_total
-    FROM usuario_pergunta
-    WHERE usuario_id = '{$userId}'
-        AND atendida = 0;
-");
+$usuario_pergunta = new UsuarioPergunta();
+
+$totalItemsQuery = $usuario_pergunta->find(
+    "usuario_id = {$userId}
+        AND atendida = 0",
+    "",
+    "COUNT(*) AS num_total"
+);
 
 $response = 'N/A';
 

@@ -1,5 +1,4 @@
 <?php
-
 class UsuarioPergunta
 {
     public $usuario_id;

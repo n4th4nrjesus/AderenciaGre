@@ -1,29 +1,28 @@
 <?php
 include(__DIR__ . '/../../../../Database/database_connection.php');
+include(__DIR__ . '/../../../../Model/usuario_pergunta.php');
 
 $userId = trim($_POST["userId"]);
 $artifactId = trim($_POST["artifactId"]);
 
-$totalItemsQuery = executeSelect("
-    SELECT
-        COUNT(up.*) AS num_total
-    FROM usuario_pergunta up
-    INNER JOIN pergunta_checklist pc
-        ON up.pergunta_id = pc.id
-    WHERE uo.usuario_id = '{$userId}'
-        AND pc.artefato_id = {$artifactId};
-");
+$usuario_pergunta = new UsuarioPergunta();
 
-$numberOfAdherencesQuery = executeSelect("
-    SELECT
-        COUNT(up.*) AS num_adherences
-    FROM usuario_pergunta up
-    INNER JOIN pergunta_checklist pc
-        ON up.pergunta_id = pc.id
-    WHERE up.usuario_id = '{$userId}'
+$totalItemsQuery = $usuario_pergunta->find(
+    "up.usuario_id = {$userId}
+        AND pc.artefato_id = {$artifactId}",
+    "INNER JOIN pergunta_checklist pc
+        ON up.pergunta_id = pc.id",
+    "COUNT(up.*) AS num_total"
+);
+
+$numberOfAdherencesQuery = $usuario_pergunta->find(
+    "up.usuario_id = {$userId}
         AND up.atendida IN (1, 2)
-        AND pc.artefato_id = {$artifactId};
-");
+        AND pc.artefato_id = {$artifactId}",
+    "INNER JOIN pergunta_checklist pc
+        ON up.pergunta_id = pc.id",
+    "COUNT(up.*) AS num_adherences"
+);
 
 $response = 'N/A';
 

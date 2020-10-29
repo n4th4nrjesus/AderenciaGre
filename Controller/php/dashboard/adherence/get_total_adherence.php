@@ -1,22 +1,23 @@
 <?php
 include(__DIR__ . '/../../../../Database/database_connection.php');
+include(__DIR__ . '/../../../../Model/usuario_pergunta.php');
 
 $userId = trim($_POST["userId"]);
 
-$totalItemsQuery = executeSelect("
-    SELECT
-        COUNT(*) AS num_total
-    FROM usuario_pergunta
-    WHERE usuario_id = '{$userId}';
-");
+$usuario_pergunta = new UsuarioPergunta();
 
-$numberOfAdherencesQuery = executeSelect("
-    SELECT
-        COUNT(*) AS num_adherences
-    FROM usuario_pergunta
-    WHERE usuario_id = '{$userId}'
-        AND atendida IN (1, 2);
-");
+$totalItemsQuery = $usuario_pergunta->find(
+    "usuario_id = {$userId}",
+    "",
+    "COUNT(*) AS num_total"
+);
+
+$numberOfAdherencesQuery = $usuario_pergunta->find(
+    "usuario_id = {$userId}
+        AND atendida IN (1, 2)",
+    "",
+    "COUNT(*) AS num_adherences"
+);
 
 $response = 'N/A';
 
