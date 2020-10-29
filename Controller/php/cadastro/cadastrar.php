@@ -1,5 +1,4 @@
 <?php
-
 include(__DIR__ . '/../../../Database/database_connection.php');
 include(__DIR__ . '/../../../Model/usuario.php');
 

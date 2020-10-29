@@ -24,6 +24,7 @@ function executeSelect(string $query)
     if ($result = mysqli_query($conn, $query)) {
         if (mysqli_num_rows($result) > 0)
             return ['status' => 1, 'result' => $result];
+
         return
             ['status' => 0, 'result' => 'Found no rows.'];
     }

@@ -82,12 +82,16 @@ CREATE TABLE aderencia_gre.usuario_pergunta (
     CONSTRAINT fk_usuario_pergunta_urgencia
     FOREIGN KEY (urgencia_id)
         REFERENCES urgencia(id),
+    CONSTRAINT fk_usuario_pergunta_complexidade
+    FOREIGN KEY (complexidade_id)
+        REFERENCES complexidade(id),
     CONSTRAINT fk_usuario_pergunta_responsavel
     FOREIGN KEY (responsavel_id)
         REFERENCES responsavel(id)
 );
 
 
+DROP USER IF EXISTS 'usu@AderenciaGre'@'localhost';
 CREATE USER 'usu@AderenciaGre'@'localhost' IDENTIFIED BY 'aderenciagrepassword';
 
 GRANT ALL PRIVILEGES ON aderencia_gre.* TO 'usu@AderenciaGre'@'localhost';
