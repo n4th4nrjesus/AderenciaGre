@@ -55,4 +55,10 @@ body {
   .adapt-body-to-menu {
     padding-top: 150px;
   }
+  .double-card-row-l {
+    padding-right: 1.5rem !important;
+  }
+  .double-card-row-r {
+    padding-left: 1.5rem !important;
+  }
 }
