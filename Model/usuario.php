@@ -8,7 +8,7 @@ class Usuario
 
     public function find(string $where = '', string $joins = '', $fields = '*')
     {
-        return find('usuario', $where, $joins, $fields);
+        return find('usuario u', $where, $joins, $fields);
     }
 
     public function create()
