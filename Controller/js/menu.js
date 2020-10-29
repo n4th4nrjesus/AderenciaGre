@@ -1,4 +1,4 @@
-currentMenu($(location).attr("pathname"));
+currentMenu(window.location.href);
 
 $("#nav-brand").click(() => {
   $("#nav-dashboard").click();
@@ -9,11 +9,11 @@ $("#nav-dashboard").click(() => {
 });
 
 $("#nav-use-cases, #alert-use-cases").click(() => {
-  setLocation("src/checklist/casos_de_uso.php");
+  setLocation("src/checklist.php?tab=casos_de_uso");
 });
 
 $("#nav-requirements, #alert-requirements").click(() => {
-  setLocation("src/checklist/especificacoes_requisitos.php");
+  setLocation("src/checklist.php?tab=especificacoes_requisitos");
 });
 
 $("#btnExit").click(() => {
