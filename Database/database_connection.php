@@ -72,8 +72,13 @@ function create($table, array $fields)
     }
 
     $fieldNames = implode(',', $fieldNames);
-    $fieldValues = implode("','", $fieldValues);
-    $fieldValues = "'" . $fieldValues . "'";
+
+    for ($i = 0; $i < count($fieldValues); $i++) {
+        $fieldValue = $fieldValues[$i];
+        if (!is_integer($fieldValues)) $fieldValues[$i] = "'" . $fieldValue . "'";
+    }
+
+    $fieldValues = implode(',', $fieldValues);
 
     $sql = "
         INSERT INTO aderencia_gre.{$table}
