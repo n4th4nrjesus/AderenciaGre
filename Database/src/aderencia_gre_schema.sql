@@ -45,20 +45,9 @@ CREATE TABLE aderencia_gre.complexidade (
 );
 
 DROP TABLE IF EXISTS aderencia_gre.cargo;
-CREATE TABLE aderencia_gre.cargo (
+CREATE TABLE aderencia_gre.cargo_responsavel (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(250) NOT NULL UNIQUE,
-    descricao VARCHAR(500) NOT NULL UNIQUE
-);
-
-DROP TABLE IF EXISTS aderencia_gre.responsavel;
-CREATE TABLE aderencia_gre.responsavel (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    cargo_id INTEGER NOT NULL,
-    nome VARCHAR(250) NOT NULL UNIQUE,
-    CONSTRAINT fk_responsavel_cargo
-    FOREIGN KEY (cargo_id)
-        REFERENCES cargo(id)
+    nome VARCHAR(250) NOT NULL UNIQUE
 );
 
 DROP TABLE IF EXISTS aderencia_gre.usuario_pergunta;
@@ -67,7 +56,7 @@ CREATE TABLE aderencia_gre.usuario_pergunta (
     pergunta_checklist_id INTEGER NOT NULL,
     urgencia_id INTEGER,
     complexidade_id INTEGER,
-    responsavel_id INTEGER,
+    cargo_responsavel_id INTEGER,
     atendida INTEGER DEFAULT 1
         COMMENT '0 = não; 1 = sim; 2 = não aplicável',
     plano_acao VARCHAR(1000),
@@ -85,9 +74,9 @@ CREATE TABLE aderencia_gre.usuario_pergunta (
     CONSTRAINT fk_usuario_pergunta_complexidade
     FOREIGN KEY (complexidade_id)
         REFERENCES complexidade(id),
-    CONSTRAINT fk_usuario_pergunta_responsavel
-    FOREIGN KEY (responsavel_id)
-        REFERENCES responsavel(id)
+    CONSTRAINT fk_usuario_pergunta_cargo_responsavel
+    FOREIGN KEY (cargo_responsavel_id)
+        REFERENCES cargo_responsavel(id)
 );
 
 
