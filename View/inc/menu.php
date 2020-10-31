@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light shadow-sm">
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light shadow">
     <a class="navbar-brand" id="nav-brand" href="#">Aderência Gre</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

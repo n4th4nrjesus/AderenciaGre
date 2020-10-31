@@ -9,7 +9,7 @@ include(__DIR__ . '/../inc/header.php');
     <input type="hidden" id="user-id" value="<?= $_SESSION["usuario_id"]; ?>">
     <div class="row">
         <div class="col-12 pr-4 pl-4">
-            <div class="alert alert-warning alert-dismissible d-none" id="hundred-alert" role="alert">
+            <div class="alert alert-warning alert-dismissible d-none" id="first-time-alert" role="alert">
                 Atenção! Se essa é sua primeira vez no sistema, você precisa atualizar sua checklist de
                 <a href="#" class="alert-link" id="alert-use-cases">casos de uso</a>
                 ou de

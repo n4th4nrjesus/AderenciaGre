@@ -92,7 +92,7 @@ function getUrgencyOrComplexityMedium(userId, option) {
 }
 
 function setFirstTimeAlert(response) {
-  const alert = $("#hundred-alert");
+  const alert = $("#first-time-alert");
 
   if (response == "N/A" && !alert.hasClass("show")) {
     alert.removeClass("d-none");

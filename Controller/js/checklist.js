@@ -3,6 +3,10 @@ const tabName = $("#tab-name").val();
 
 getQuestions(userId, tabName);
 
+$("#btnSave").click(() => {
+  saveChanges(userId);
+});
+
 function getQuestions(userId, tabName) {
   $.ajax({
     type: "POST",
@@ -18,6 +22,7 @@ function getQuestions(userId, tabName) {
       $("#question-list").html(generateQuestionListHtml(response));
       loadResponsibles();
       adjustSelects(response);
+      $("#first-time-alert").alert("close");
     },
   });
 }
@@ -28,7 +33,7 @@ function generateQuestionListHtml(response) {
       `
       <tr>
         <td colspan="9">
-          <div class="alert alert-danger alert-dismissible fade show" id="hundred-alert" role="alert">
+          <div class="alert alert-danger alert-dismissible fade show" id="first-time-alert" role="alert">
             ` +
       response +
       `
@@ -63,7 +68,7 @@ function generateQuestionListHtml(response) {
       </td>
       <td>
         <select class="custom-select urgency">
-          <option selected disabled hidden>-</option>
+          <option value="" selected disabled hidden>-</option>
           <option class="urgency-1" value="3">Baixa</option>
           <option class="urgency-2" value="2">Média</option>
           <option class="urgency-3" value="1">Alta</option>
@@ -72,7 +77,7 @@ function generateQuestionListHtml(response) {
       </td>
       <td>
         <select class="custom-select complexity">
-          <option selected disabled hidden>-</option>
+          <option value="" selected disabled hidden>-</option>
           <option class="complexity-1" value="1">Baixa</option>
           <option class="complexity-2" value="2">Média</option>
           <option class="complexity-3" value="3">Alta</option>
@@ -82,18 +87,20 @@ function generateQuestionListHtml(response) {
       (td.deadline ?? "N/A") +
       `</td>
       <td class="w-25">
-        <textarea class="form-control action-plan" pattern=".{0,500}">` +
+        <textarea placeholder="` +
+      (td.actionPlan ?? "Insira seu plano de ação para esse item  ") +
+      `" class="form-control action-plan" pattern=".{0,500}">` +
       (td.actionPlan ?? "") +
       `</textarea>
       </td>
       <td>
         <select class="custom-select responsible">
-          <option selected disabled hidden>-</option>
+          <option value="" selected disabled hidden>-</option>
         </select>
       </td>
       <td>
         <select class="custom-select echeloned">
-          <option selected disabled hidden>-</option>
+          <option value="" selected disabled hidden>-</option>
           <option value="0">Não</option>
           <option value="1">Sim</option>
         </select>
@@ -167,3 +174,5 @@ function adjustSelects(response) {
     $(row).find("select.echeloned").val(response[i].echeloned);
   }
 }
+
+function saveChanges(userId) {}
