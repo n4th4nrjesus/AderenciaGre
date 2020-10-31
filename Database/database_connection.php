@@ -43,9 +43,10 @@ function executeInsert(string $sql)
     return ['status' => -1, 'result' => mysqli_error($conn)];
 }
 
-function find(string $table, string $where = '', string $joins = '', $fields = '*')
+function find(string $table, $where = '', string $joins = '', $fields = '*')
 {
     $queryFields = $fields;
+    $queryWhere = '';
 
     if (is_array($fields))
         $queryFields = implode(',', $fields);

@@ -22,7 +22,7 @@ function setResponse($userId, $questionsQuery, $tabName)
         case 0:
             generateQuestionsForUser($userId);
             $questionsQuery = findQuestions($userId, $tabName);
-            setResponse($userId, $questionsQuery, $tabName);
+            fetchUserQuestions($questionsQuery['result']);
             break;
         case 1:
             fetchUserQuestions($questionsQuery['result']);

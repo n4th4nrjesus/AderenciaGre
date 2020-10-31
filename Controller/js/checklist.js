@@ -74,7 +74,7 @@ function generateQuestionListHtml(response) {
         </select>
       </td>
       <td class="deadline">` +
-      td.deadline +
+      (td.deadline ?? "N/A") +
       `</td>
       <td class="w-25">
         <textarea class="form-control action-plan" pattern=".{0,500}"></textarea>
@@ -95,7 +95,6 @@ function generateQuestionListHtml(response) {
 
     buildedHtml += "</tr>";
   });
-
   return buildedHtml;
 }
 

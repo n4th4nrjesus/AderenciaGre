@@ -6,7 +6,7 @@ class Usuario
     public $email;
     public $senha;
 
-    public function find(string $where = '', string $joins = '', $fields = '*')
+    public function find($where = null, string $joins = '', $fields = '*')
     {
         return find('usuario u', $where, $joins, $fields);
     }
