@@ -1,16 +1,19 @@
 /* Instancias iniciais do banco de dados aderencia_gre */
 
+TRUNCATE TABLE IF EXISTS aderencia_gre.artefato;
 INSERT INTO aderencia_gre.artefato (nome, tipo)
 VALUES 
     ("Diagrama de Caso de Uso", "Diagrama")
     , ("Especificação de Resquisitos", "Arquivo em Texto");
 
+TRUNCATE TABLE IF EXISTS aderencia_gre.complexidade;
 INSERT INTO aderencia_gre.complexidade (nome, dias_prazo)
 VALUES
     ("Baixa", 1)
     , ("Média", 2)
     , ("Alta", 3);
 
+TRUNCATE TABLE IF EXISTS aderencia_gre.urgencia;
 INSERT INTO aderencia_gre.urgencia (nome, dias_prazo)
 VALUES
     ("Baixa", 3)
@@ -18,6 +21,7 @@ VALUES
     , ("Alta", 1)
     , ("Urgente", 0);
 
+TRUNCATE TABLE IF EXISTS aderencia_gre.pergunta_checklist;
 INSERT INTO aderencia_gre.pergunta_checklist (artefato_id, descricao)
 VALUES
     (1, "As funcionalidades estão coerentes com o que foi obtido com os fornecedores")
