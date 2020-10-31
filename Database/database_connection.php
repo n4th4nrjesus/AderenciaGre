@@ -75,7 +75,8 @@ function create($table, array $fields)
 
     for ($i = 0; $i < count($fieldValues); $i++) {
         $fieldValue = $fieldValues[$i];
-        if (!is_integer($fieldValues)) $fieldValues[$i] = "'" . $fieldValue . "'";
+        if (!is_integer($fieldValue)) $fieldValues[$i] = "'" . $fieldValue . "'";
+        if (empty($fieldValue)) $fieldValues[$i] = "NULL";
     }
 
     $fieldValues = implode(',', $fieldValues);
