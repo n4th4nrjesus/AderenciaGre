@@ -6,10 +6,10 @@ include(__DIR__ . '/../../../Controller/php/checklist/generate_questions.php');
 $userId = $_POST["userId"];
 $tabName = $_POST["tabName"];
 
+$response = 'Algum erro ocorreu.';
+
 $questionsQuery = findQuestions($userId, $tabName);
 setResponse($userId, $questionsQuery, $tabName);
-
-$response = 'Algum erro ocorreu.';
 
 function setResponse($userId, $questionsQuery, $tabName)
 {
@@ -56,10 +56,11 @@ function findQuestions($userId, $tabName)
 
 function fetchUserQuestions($questionsQueryResult)
 {
-    $questions = mysqli_fetch_assoc($questionsQueryResult);
+    global $response;
+    $response = [];
 
     $i = 0;
-    foreach ($questions as $question) {
+    while ($question = mysqli_fetch_assoc($questionsQueryResult)) {
         $response[$i]["questionId"] = $question["id"];
         $response[$i]["questionDescription"] = $question["descricao"];
         $response[$i]["accord"] = $question["atendida"];

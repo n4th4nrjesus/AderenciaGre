@@ -49,12 +49,13 @@ function generateQuestionListHtml(response) {
       td.questionDescription +
       `
       </td>
+      <td>
         <select class="custom-select accord">
           <option value="0">Não</option>
           <option value="1" selected>Sim</option>
           <option value="2">N/A</option>
         </select>
-      <td>
+      </td>
       <td>
         <select class="custom-select urgency">
           <option selected disabled hidden>-</option>
