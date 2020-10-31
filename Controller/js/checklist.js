@@ -17,19 +17,17 @@ function getQuestions(userId, tabName) {
     success: (response) => {
       $("#question-list").html(generateQuestionListHtml(response));
       loadResponsibles();
+      adjustSelects(response);
     },
   });
 }
 
 function generateQuestionListHtml(response) {
-  var buildedHtml = "";
-  var ref = 1;
-
   if (!Array.isArray(response))
     return (
       `
       <tr>
-        <td colspan="8">
+        <td colspan="9">
           <div class="alert alert-danger alert-dismissible fade show" id="hundred-alert" role="alert">
             ` +
       response +
@@ -39,6 +37,9 @@ function generateQuestionListHtml(response) {
       </tr>
     `
     );
+
+  var buildedHtml = "";
+  var ref = 1;
 
   response.forEach((td) => {
     buildedHtml += "<tr class='question-row' id='" + td.questionId + "'>";
@@ -81,7 +82,9 @@ function generateQuestionListHtml(response) {
       (td.deadline ?? "N/A") +
       `</td>
       <td class="w-25">
-        <textarea class="form-control action-plan" pattern=".{0,500}"></textarea>
+        <textarea class="form-control action-plan" pattern=".{0,500}">` +
+      (td.actionPlan ?? "") +
+      `</textarea>
       </td>
       <td>
         <select class="custom-select responsible">
@@ -120,6 +123,8 @@ function loadResponsibles() {
 }
 
 function generateSelectOptionsForResponsible(response) {
+  if (!Array.isArray(response)) return;
+
   var buildedHtml = "";
 
   response.forEach((option) => {
@@ -127,5 +132,38 @@ function generateSelectOptionsForResponsible(response) {
       "<option value='" + option.postId + "'>" + option.postName + "</option>";
   });
 
+  $(".responsible").each(() => {
+    $(this).append(buildedHtml);
+  });
+
   return buildedHtml;
+}
+
+function adjustSelects(response) {
+  if (!Array.isArray(response)) return;
+
+  const questionRows = $(".question-row");
+
+  for (let i = 0; i < questionRows.length; i++) {
+    const row = questionRows[i];
+
+    $(row).find("select.accord").val(response[i].accord);
+
+    const urgencyValue = $(row)
+      .find("select.urgency")
+      .find(".urgency-" + response[i].urgency)
+      .val();
+
+    $(row).find("select.urgency").val(urgencyValue);
+
+    const complexityValue = $(row)
+      .find("select.complexity")
+      .find(".complexity-" + response[i].complexity)
+      .val();
+
+    $(row).find("select.complexity").val(complexityValue);
+
+    $(row).find("select.responsible").val(response[i].responsiblePost);
+    $(row).find("select.echeloned").val(response[i].echeloned);
+  }
 }

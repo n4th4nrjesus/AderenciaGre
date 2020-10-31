@@ -42,11 +42,12 @@ function findQuestions($userId, $tabName)
         "up.usuario_id = {$userId}
         AND pc.artefato_id = {$tabId}",
         "INNER JOIN pergunta_checklist pc
-        ON up.pergunta_checklist_id = pc.id",
+            ON up.pergunta_checklist_id = pc.id",
         "pc.id
     , pc.descricao
     , up.atendida
     , up.urgencia_id
+    , up.cargo_responsavel_id
     , up.complexidade_id
     , up.prazo
     , up.plano_acao
@@ -66,8 +67,9 @@ function fetchUserQuestions($questionsQueryResult)
         $response[$i]["accord"] = $question["atendida"];
         $response[$i]["urgency"] = $question["urgencia_id"];
         $response[$i]["complexity"] = $question["complexidade_id"];
+        $response[$i]["responsiblePost"] = $question["cargo_responsavel_id"];
         $response[$i]["deadline"] = $question["prazo"];
-        $response[$i]["action-plan"] = $question["plano_acao"];
+        $response[$i]["actionPlan"] = $question["plano_acao"];
         $response[$i]["echeloned"] = $question["escalonada"];
 
         $i++;
