@@ -19,6 +19,7 @@ include(__DIR__ . '/../inc/header.php');
             <table class="table table-striped">
                 <thead>
                     <tr class="text-nowrap">
+                        <th scope="col">#</th>
                         <th scope="col">Pergunta</th>
                         <th scope="col">Atendida</th>
                         <th scope="col">Urgência</th>

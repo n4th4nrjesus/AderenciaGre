@@ -11,7 +11,7 @@ $totalItemsQuery = $usuario_pergunta->find(
     "up.usuario_id = {$userId}
         AND pc.artefato_id = {$artifactId}",
     "INNER JOIN pergunta_checklist pc
-        ON up.pergunta_id = pc.id",
+        ON up.pergunta_checklist_id = pc.id",
     "COUNT(up.pergunta_checklist_id) AS num_total"
 );
 
@@ -20,7 +20,7 @@ $numberOfAdherencesQuery = $usuario_pergunta->find(
         AND up.atendida IN (1, 2)
         AND pc.artefato_id = {$artifactId}",
     "INNER JOIN pergunta_checklist pc
-        ON up.pergunta_id = pc.id",
+        ON up.pergunta_checklist_id = pc.id",
     "COUNT(up.pergunta_checklist_id) AS num_adherences"
 );
 

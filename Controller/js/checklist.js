@@ -23,11 +23,12 @@ function getQuestions(userId, tabName) {
 
 function generateQuestionListHtml(response) {
   var buildedHtml = "";
+  var ref = 1;
 
   if (!Array.isArray(response))
     return (
       `
-    <tr>
+      <tr>
         <td colspan="8">
           <div class="alert alert-danger alert-dismissible fade show" id="hundred-alert" role="alert">
             ` +
@@ -44,6 +45,9 @@ function generateQuestionListHtml(response) {
 
     buildedHtml +=
       `
+      <td><b>` +
+      ref +
+      `</b></td>
       <td>
         ` +
       td.questionDescription +
@@ -94,6 +98,7 @@ function generateQuestionListHtml(response) {
     `;
 
     buildedHtml += "</tr>";
+    ref++;
   });
   return buildedHtml;
 }
