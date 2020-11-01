@@ -3,6 +3,12 @@ const tabName = $("#tab-name").val();
 
 getQuestions(userId, tabName);
 
+Date.prototype.addDays = (days) => {
+  var date = new Date(this.valueOf());
+  date.setDate(date.getDate() + days);
+  return date;
+};
+
 $("#btnSave").click(() => {
   saveChanges(userId);
 });
@@ -47,6 +53,14 @@ function generateQuestionListHtml(response) {
   var ref = 1;
 
   response.forEach((td) => {
+    var deadline = null;
+
+    if (td.deadline) {
+      deadline = td.deadline.split(" ")[0];
+      deadline = deadline.split("-");
+      deadline = deadline[2] + "/" + deadline[1] + "/" + deadline[0];
+    }
+
     buildedHtml += "<tr class='question-row' id='" + td.questionId + "'>";
 
     buildedHtml +=
@@ -84,7 +98,7 @@ function generateQuestionListHtml(response) {
         </select>
       </td>
       <td class="deadline">` +
-      (td.deadline ?? "N/A") +
+      (deadline ?? "N/A") +
       `</td>
       <td class="w-25">
         <textarea placeholder="` +
@@ -162,6 +176,7 @@ function adjustSelects(response) {
       .val();
 
     $(row).find("select.urgency").val(urgencyValue);
+    $("#old-urgency").val(urgencyValue);
 
     const complexityValue = $(row)
       .find("select.complexity")
@@ -169,10 +184,84 @@ function adjustSelects(response) {
       .val();
 
     $(row).find("select.complexity").val(complexityValue);
+    $("#old-complexity").val(complexityValue);
 
     $(row).find("select.responsible").val(response[i].responsiblePost);
     $(row).find("select.echeloned").val(response[i].echeloned);
   }
 }
 
-function saveChanges(userId) {}
+function saveChanges(userId) {
+  const checklistData = getChecklistData();
+
+  $.ajax({
+    type: "POST",
+    dataType: "json",
+    url:
+      window.location.origin +
+      "/AderenciaGre/Controller/php/checklist/save_checklist.php",
+    data: {
+      userId: userId,
+      checklistData: checklistData,
+    },
+    success: (response) => {
+      alert(response);
+      window.location.reload();
+    },
+  });
+}
+
+function getChecklistData() {
+  const questionRows = $(".question-row");
+  const dataArray = [];
+
+  for (let i = 0; i < questionRows.length; i++) {
+    const row = questionRows[i];
+
+    const urgencyValue = parseInt($(row).find(".urgency").val());
+    const complexity = parseInt($(row).find(".complexity").val());
+
+    var urgencyId = "NaN";
+
+    if (urgencyValue) {
+      urgencyId = parseInt(
+        $(row)
+          .find(".urgency")
+          .find("[value='" + urgencyValue + "']")
+          .attr("class")
+          .split("-")[1]
+      );
+    }
+
+    var deadline = new Date();
+    deadline.addDays(urgencyValue + complexity);
+    deadline =
+      deadline.getFullYear() +
+      "-" +
+      (deadline.getMonth() + 1) +
+      "-" +
+      deadline.getDate() +
+      " 00:00:00";
+
+    if (!($(row).find(".deadline").html() == "N/A")) {
+      var dateField = $(row).find(".deadline").html();
+      dateField = dateField.split("/");
+
+      deadline =
+        dateField[2] + "-" + dateField[1] + "-" + dateField[0] + " 00:00:00";
+    }
+
+    dataArray[i] = {
+      id: $(row).attr("id"),
+      accord: $(row).find(".accord").val(),
+      urgency: urgencyId,
+      complexity: complexity,
+      deadline: deadline,
+      actionPlan: $(row).find(".action-plan").val(),
+      responsible: $(row).find("select.responsible").val(),
+      echenoled: $(row).find("select.echeloned").val(),
+    };
+  }
+
+  return dataArray;
+}

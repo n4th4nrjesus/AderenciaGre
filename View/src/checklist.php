@@ -14,6 +14,8 @@ include(__DIR__ . '/../inc/header.php');
 <div class="container-fluid pt-4 pb-5 mb-4">
     <input type="hidden" id="user-id" value="<?= $_SESSION["usuario_id"]; ?>">
     <input type="hidden" id="tab-name" value="<?= $tab; ?>">
+    <input type="hidden" id="old-urgency">
+    <input type="hidden" id="old-complexity">
     <div class="row pr-4 pl-4">
         <div class="alert alert-warning alert-dismissible fade show w-100" id="first-time-alert" role="alert">
             <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-hourglass-split" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -47,7 +49,7 @@ include(__DIR__ . '/../inc/header.php');
     <div class="row">
         <div class="col-12">
             <button id="btnSave" class="btn btn-success w-100 text-center">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <svg width="1rem" height="1rem" viewBox="0 0 16 16" class="bi bi-check2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
                 </svg>
                 Salvar

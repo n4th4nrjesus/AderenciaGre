@@ -18,7 +18,7 @@ $response = 'N/A';
 if ($totalItemsQuery["status"] == 1) {
     $totalItems = mysqli_fetch_assoc($totalItemsQuery["result"])["num_total"];
 
-    if ($totalItems)
+    if (!empty($totalItems) || $totalItems == "0")
         $response = $totalItems;
 }
 

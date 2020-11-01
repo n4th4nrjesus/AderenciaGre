@@ -25,7 +25,7 @@ if ($totalItemsQuery["status"] == 1 && $numberOfAdherencesQuery["status"] == 1) 
     $totalItems = mysqli_fetch_assoc($totalItemsQuery["result"])["num_total"];
     $numberOfAdherences = mysqli_fetch_assoc($numberOfAdherencesQuery["result"])["num_adherences"];
 
-    if ($totalItems) {
+    if (!empty($totalItems) || $totalItems === 0) {
         $totalAdherence = $numberOfAdherences * 100 / $totalItems;
         $response = $totalAdherence;
     }
