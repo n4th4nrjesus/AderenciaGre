@@ -47,7 +47,7 @@ CREATE TABLE aderencia_gre.complexidade (
 DROP TABLE IF EXISTS aderencia_gre.cargo;
 CREATE TABLE aderencia_gre.cargo_responsavel (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(250) NOT NULL UNIQUE,
+    nome VARCHAR(250) NOT NULL,
     usuario_id INTEGER NOT NULL,
     CONSTRAINT fk_cargo_responsavel_usuario
     FOREIGN KEY (usuario_id)
