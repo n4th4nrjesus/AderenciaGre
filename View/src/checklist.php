@@ -21,6 +21,10 @@ include(__DIR__ . '/../inc/header.php');
             </svg>
             Aguarde um pouco. Se essa for sua primeira vez nessa tela, pode demorar uns segundos.
         </div>
+        <div class="alert alert-warning alert-dismissible w-100 d-none" id="no-responsibles-alert" role="alert">
+            Não foi possível carregar os cargos responsáveis. Talvez você tenha que adicionar algum na aba de
+            <a href="#" class="alert-link" id="alert-responsible">cargos responsáveis</a>.
+        </div>
         <div class="col-12 bg-light p-4 rounded-lg table-responsive">
             <table class="table table-striped">
                 <thead>

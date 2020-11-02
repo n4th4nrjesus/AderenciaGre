@@ -16,6 +16,10 @@ $("#nav-requirements, #alert-requirements").click(() => {
   setLocation("src/checklist.php?tab=especificacoes_requisitos");
 });
 
+$("#nav-responsibles, #alert-responsible").click(() => {
+  setLocation("src/responsible_post.php");
+});
+
 $("#btnExit").click(() => {
   $.ajax({
     type: "POST",

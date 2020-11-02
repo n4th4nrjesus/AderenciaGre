@@ -26,8 +26,7 @@ function getQuestions(userId, tabName) {
     },
     success: (response) => {
       $("#question-list").html(generateQuestionListHtml(response));
-      loadResponsibles();
-      adjustSelects(response);
+      loadResponsibles(response);
       $("#first-time-alert").alert("close");
     },
   });
@@ -129,7 +128,7 @@ function generateQuestionListHtml(response) {
   return buildedHtml;
 }
 
-function loadResponsibles() {
+function loadResponsibles(response) {
   $.ajax({
     type: "POST",
     dataType: "json",
@@ -139,8 +138,10 @@ function loadResponsibles() {
     data: {
       userId: userId,
     },
-    success: (response) => {
-      $(".responsible").append(generateSelectOptionsForResponsible(response));
+    success: (responsibles) => {
+      generateSelectOptionsForResponsible(responsibles);
+      setNoResponsibleAlert(responsibles);
+      adjustSelects(response);
     },
   });
 }
@@ -155,9 +156,7 @@ function generateSelectOptionsForResponsible(response) {
       "<option value='" + option.postId + "'>" + option.postName + "</option>";
   });
 
-  $(".responsible").each(() => {
-    $(this).append(buildedHtml);
-  });
+  $(".responsible").append(buildedHtml);
 
   return buildedHtml;
 }
@@ -284,4 +283,13 @@ function getChecklistData() {
   }
 
   return dataArray;
+}
+
+function setNoResponsibleAlert(response) {
+  const alert = $("#no-responsibles-alert");
+
+  if (!response) {
+    alert.removeClass("d-none");
+    alert.addClass("fade show");
+  }
 }

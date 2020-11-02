@@ -11,7 +11,7 @@ class UsuarioPergunta
     public $prazo;
     public $escalonada;
 
-    public function find($where = null, string $joins = '', string $fields = '*')
+    public function find($where = null, string $joins = '', $fields = null)
     {
         return find('usuario_pergunta up', $where, $joins, $fields);
     }

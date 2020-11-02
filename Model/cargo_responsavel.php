@@ -1,24 +1,22 @@
 <?php
-class Usuario
+class CargoResponsavel
 {
     public $id;
     public $nome;
-    public $email;
-    public $senha;
+    public $usuario_id;
 
     public function find($where = null, string $joins = '', $fields = null)
     {
-        return find('usuario u', $where, $joins, $fields);
+        return find('cargo_responsavel cr', $where, $joins, $fields);
     }
 
     public function create()
     {
         return create(
-            'usuario',
+            'cargo_responsavel',
             [
                 'nome' => $this->nome,
-                'email' => $this->email,
-                'senha' => $this->senha
+                'usuario_id' => $this->usuario_id,
             ]
         );
     }
