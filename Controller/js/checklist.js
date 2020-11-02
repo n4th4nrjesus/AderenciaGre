@@ -65,6 +65,8 @@ function generateQuestionListHtml(response) {
 
     buildedHtml +=
       `
+      <input type="hidden" class="old-urgency">
+      <input type="hidden" class="old-complexity">
       <td><b>` +
       ref +
       `</b></td>
@@ -176,7 +178,7 @@ function adjustSelects(response) {
       .val();
 
     $(row).find("select.urgency").val(urgencyValue);
-    $("#old-urgency").val(urgencyValue);
+    $(row).find(".old-urgency").val(urgencyValue);
 
     const complexityValue = $(row)
       .find("select.complexity")
@@ -184,7 +186,7 @@ function adjustSelects(response) {
       .val();
 
     $(row).find("select.complexity").val(complexityValue);
-    $("#old-complexity").val(complexityValue);
+    $(row).find(".old-complexity").val(complexityValue);
 
     $(row).find("select.responsible").val(response[i].responsiblePost);
     $(row).find("select.echeloned").val(response[i].echeloned);
@@ -233,10 +235,32 @@ function getChecklistData() {
       );
     }
 
+    const hasNoDeadlineYet = $(row).find(".deadline").html() == "N/A";
+
     var deadline = new Date();
 
+    if (!hasNoDeadlineYet) {
+      var dateField = $(row).find(".deadline").html();
+      dateField = dateField.split("/");
+
+      deadline = new Date(
+        parseInt(dateField[2]),
+        parseInt(dateField[1]) - 1,
+        parseInt(dateField[0])
+      );
+    }
+
     if (!Number.isNaN(urgencyValue) && !Number.isNaN(complexity)) {
-      deadline = addDays(deadline, urgencyValue + complexity);
+      var oldUrgency = parseInt($(row).find(".old-urgency").val());
+      if (Number.isNaN(oldUrgency) || hasNoDeadlineYet) oldUrgency = 0;
+
+      var oldComplexity = parseInt($(row).find(".old-complexity").val());
+      if (Number.isNaN(oldComplexity) || hasNoDeadlineYet) oldComplexity = 0;
+
+      deadline = addDays(
+        deadline,
+        urgencyValue + complexity - (oldUrgency + oldComplexity)
+      );
     }
 
     deadline =
@@ -246,14 +270,6 @@ function getChecklistData() {
       "-" +
       deadline.getDate() +
       " 00:00:00";
-
-    if (!($(row).find(".deadline").html() == "N/A")) {
-      var dateField = $(row).find(".deadline").html();
-      dateField = dateField.split("/");
-
-      deadline =
-        dateField[2] + "-" + dateField[1] + "-" + dateField[0] + " 00:00:00";
-    }
 
     dataArray[i] = {
       id: $(row).attr("id"),

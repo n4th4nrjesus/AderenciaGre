@@ -14,8 +14,6 @@ include(__DIR__ . '/../inc/header.php');
 <div class="container-fluid pt-4 pb-5 mb-4">
     <input type="hidden" id="user-id" value="<?= $_SESSION["usuario_id"]; ?>">
     <input type="hidden" id="tab-name" value="<?= $tab; ?>">
-    <input type="hidden" id="old-urgency">
-    <input type="hidden" id="old-complexity">
     <div class="row pr-4 pl-4">
         <div class="alert alert-warning alert-dismissible fade show w-100" id="first-time-alert" role="alert">
             <svg width="16px" height="16px" viewBox="0 0 16 16" class="bi bi-hourglass-split" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
