@@ -12,6 +12,8 @@ getNonComplianceNumberByArtifact(userId, 2);
 getUrgencyOrComplexityMedium(userId, "U");
 getUrgencyOrComplexityMedium(userId, "C");
 
+getTopPost(userId);
+
 function getTotalAdherence(userId) {
   $.ajax({
     type: "POST",
@@ -112,6 +114,23 @@ function getUrgencyOrComplexityMedium(userId, option) {
     },
     success: (response) => {
       infoBox.html(response);
+      setFirstTimeAlert(response);
+    },
+  });
+}
+
+function getTopPost(userId) {
+  $.ajax({
+    type: "POST",
+    dataType: "json",
+    url:
+      window.location.origin +
+      "/AderenciaGre/Controller/php/dashboard/get_top_post.php",
+    data: {
+      userId: userId,
+    },
+    success: (response) => {
+      $("#top-post").html(response);
       setFirstTimeAlert(response);
     },
   });
