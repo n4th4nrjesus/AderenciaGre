@@ -1,11 +1,12 @@
 <?php
 include(__DIR__ . '/../../Controller/php/is_logged.php');
 
-$pageTitle = 'Aderência de GRE - Responsáveis';
+$pageTitle = 'Aderência de GRE - responsáveis';
 include(__DIR__ . '/../inc/header.php');
 ?>
 
 <div class='container-fluid p-5'>
+    <input type="hidden" id="user-id" value="<?= $_SESSION["usuario_id"]; ?>">
     <div class="row">
         <div class="col-12 bg-light p-4 rounded-lg mb-3 ">
             <form id="frmCadastro">
@@ -33,7 +34,6 @@ include(__DIR__ . '/../inc/header.php');
 </div>
 
 <?php
-
 $jsFile = 'cargos';
 include(__DIR__ . '/../inc/footer.php');
 ?>

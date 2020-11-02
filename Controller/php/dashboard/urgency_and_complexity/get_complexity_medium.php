@@ -16,11 +16,10 @@ $totalComplexityQuery = $usuario_pergunta->find(
 
 $sumComplexityQuery = $usuario_pergunta->find(
     "up.usuario_id = {$userId}
-        AND up.atendida = 0
-    GROUP BY up.pergunta_checklist_id",
-    "INNER JOIN complexidade u
-        ON up.complexidade_id = u.id",
-    "SUM(u.dias_prazo) AS soma_dias_prazo_complexidades"
+        AND up.atendida = 0",
+    "INNER JOIN complexidade c
+        ON up.complexidade_id = c.id",
+    "SUM(c.dias_prazo) AS soma_dias_prazo_complexidades"
 );
 
 $response = 'N/A';

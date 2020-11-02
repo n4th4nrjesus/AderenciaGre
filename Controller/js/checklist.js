@@ -125,6 +125,7 @@ function generateQuestionListHtml(response) {
     buildedHtml += "</tr>";
     ref++;
   });
+
   return buildedHtml;
 }
 

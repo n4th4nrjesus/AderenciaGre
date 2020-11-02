@@ -16,8 +16,7 @@ $totalUrgencyQuery = $usuario_pergunta->find(
 
 $sumUrgencyQuery = $usuario_pergunta->find(
     "up.usuario_id = {$userId}
-        AND up.atendida = 0
-    GROUP BY up.pergunta_checklist_id",
+        AND up.atendida = 0",
     "INNER JOIN urgencia u
         ON up.urgencia_id = u.id",
     "SUM(u.dias_prazo) AS soma_dias_prazo_urgencias"
