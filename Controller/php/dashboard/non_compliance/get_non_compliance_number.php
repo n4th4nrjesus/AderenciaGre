@@ -1,6 +1,6 @@
 <?php
-include(__DIR__ . '/../../../Database/database_connection.php');
-include(__DIR__ . '/../../../Model/usuario_pergunta.php');
+include(__DIR__ . '/../../../../Database/database_connection.php');
+include(__DIR__ . '/../../../../Model/usuario_pergunta.php');
 
 $userId = trim($_POST["userId"]);
 

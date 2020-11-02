@@ -6,6 +6,9 @@ getNonComplianceNumber(userId);
 getArtifactsAdherence(userId, 1);
 getArtifactsAdherence(userId, 2);
 
+getNonComplianceNumberByArtifact(userId, 1);
+getNonComplianceNumberByArtifact(userId, 2);
+
 getUrgencyOrComplexityMedium(userId, "U");
 getUrgencyOrComplexityMedium(userId, "C");
 
@@ -53,12 +56,35 @@ function getNonComplianceNumber(userId) {
     dataType: "json",
     url:
       window.location.origin +
-      "/AderenciaGre/Controller/php/dashboard/get_non_compliance_number.php",
+      "/AderenciaGre/Controller/php/dashboard/non_compliance/get_non_compliance_number.php",
     data: {
       userId: userId,
     },
     success: (response) => {
-      $("#non-compliance-number").html(response);
+      $("#non-compliance-number").html(
+        "Total de não conformidades - " + response
+      );
+      setFirstTimeAlert(response);
+    },
+  });
+}
+
+function getNonComplianceNumberByArtifact(userId, artifactId) {
+  var artifact = $("#use-cases-non-compliance");
+  if (artifactId == 2) var artifact = $("#requirements-non-compliance");
+
+  $.ajax({
+    type: "POST",
+    dataType: "json",
+    url:
+      window.location.origin +
+      "/AderenciaGre/Controller/php/dashboard/non_compliance/get_non_compliance_number_by_artifact.php",
+    data: {
+      userId: userId,
+      artifactId: artifactId,
+    },
+    success: (response) => {
+      artifact.html(response);
       setFirstTimeAlert(response);
     },
   });
