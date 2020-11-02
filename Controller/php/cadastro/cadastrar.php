@@ -10,7 +10,8 @@ $usuario = new Usuario();
 
 $usuario_exists = $usuario->find(
     "email = '{$email}'",
-    ''
+    "",
+    "*"
 );
 
 $response['status'] = 0;

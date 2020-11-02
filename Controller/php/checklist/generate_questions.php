@@ -5,7 +5,7 @@ function generateQuestionsForUser(int $userId)
 {
     $pergunta_checklist = new PerguntaChecklist();
 
-    $questionsQuery = $pergunta_checklist->find();
+    $questionsQuery = $pergunta_checklist->find("", "", "*");
 
     if ($questionsQuery['status'] == 1) {
         while ($question = mysqli_fetch_assoc($questionsQuery['result'])) {
