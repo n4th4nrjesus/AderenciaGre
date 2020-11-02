@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost:3306";
+$servername = "localhost:3307";
 $username = "usu@AderenciaGre";
 $password = "aderenciagrepassword";
 $database = "aderencia_gre";

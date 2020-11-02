@@ -11,9 +11,10 @@ include(__DIR__ . '/../inc/header.php');
         <div class="col-12 pr-4 pl-4">
             <div class="alert alert-warning alert-dismissible d-none" id="first-time-alert" role="alert">
                 Atenção! Se essa é sua primeira vez no sistema, você precisa atualizar sua checklist de
-                <a href="#" class="alert-link" id="alert-use-cases">casos de uso</a>
-                ou de
-                <a href="#" class="alert-link" id="alert-requirements">requisitos</a>.
+                <a href="#" class="alert-link" id="alert-use-cases">casos de uso, </a>
+                <a href="#" class="alert-link" id="alert-requirements">requisitos</a>
+                e os
+                <a href="#" class="alert-link" id="alert-responsible">responsávies</a>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span style="font-size: 1.5rem" aria-hidden="true">&times;</span>
                 </button>

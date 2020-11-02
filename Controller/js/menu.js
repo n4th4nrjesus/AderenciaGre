@@ -16,8 +16,8 @@ $("#nav-requirements, #alert-requirements").click(() => {
   setLocation("src/checklist.php?tab=especificacoes_requisitos");
 });
 
-$("#nav-responsibles, #alert-responsible").click(() => {
-  setLocation("src/responsible_post.php");
+$("#nav-responsible, #alert-responsible").click(() => {
+  setLocation("src/cargos.php");
 });
 
 $("#btnExit").click(() => {
@@ -40,6 +40,10 @@ function currentMenu(href) {
   }
   if (href.includes("casos_de_uso")) {
     $("#nav-use-cases").css("color", "#6f9bed");
+    return;
+  }
+  if (href.includes("cargos")) {
+    $("#nav-responsible").css("color", "#6f9bed");
     return;
   }
   $("#nav-requirements").css("color", "#6f9bed");
