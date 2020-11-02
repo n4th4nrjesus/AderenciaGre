@@ -3,11 +3,11 @@ const tabName = $("#tab-name").val();
 
 getQuestions(userId, tabName);
 
-Date.prototype.addDays = (days) => {
-  var date = new Date(this.valueOf());
-  date.setDate(date.getDate() + days);
-  return date;
-};
+function addDays(date, days) {
+  var result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
 
 $("#btnSave").click(() => {
   saveChanges(userId);
@@ -223,7 +223,7 @@ function getChecklistData() {
 
     var urgencyId = "NaN";
 
-    if (urgencyValue) {
+    if (urgencyValue || urgencyValue === 0) {
       urgencyId = parseInt(
         $(row)
           .find(".urgency")
@@ -234,7 +234,11 @@ function getChecklistData() {
     }
 
     var deadline = new Date();
-    deadline.addDays(urgencyValue + complexity);
+
+    if (!Number.isNaN(urgencyValue) && !Number.isNaN(complexity)) {
+      deadline = addDays(deadline, urgencyValue + complexity);
+    }
+
     deadline =
       deadline.getFullYear() +
       "-" +

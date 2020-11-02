@@ -58,7 +58,7 @@ function getNonComplianceNumber(userId) {
       userId: userId,
     },
     success: (response) => {
-      $("#non-compliance-number").html("Aderência total - " + response + " %");
+      $("#non-compliance-number").html(response);
       setFirstTimeAlert(response);
     },
   });

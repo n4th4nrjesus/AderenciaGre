@@ -27,7 +27,7 @@ if ($totalItemsQuery["status"] == 1 && $numberOfAdherencesQuery["status"] == 1) 
 
     if (!empty($totalItems) || $totalItems === 0) {
         $totalAdherence = $numberOfAdherences * 100 / $totalItems;
-        $response = $totalAdherence;
+        $response = number_format($totalAdherence, 1);
     }
 }
 
